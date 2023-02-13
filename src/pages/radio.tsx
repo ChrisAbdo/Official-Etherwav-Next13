@@ -486,7 +486,7 @@ const RadioPage = () => {
               <SelectItem value="">All</SelectItem>
               <SelectItem value="lofi">Lofi</SelectItem>
               <SelectItem value="hiphop">Hiphop</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              <SelectItem value="podcast">Podcast</SelectItem>
             </SelectContent>
           </Select>
           <DropdownMenu>
@@ -604,7 +604,7 @@ const RadioPage = () => {
                 </CollapsibleTrigger>
               </div>
               <div className="card3 rounded-md border border-black dark:border-[#1f1f1f] px-4 py-3 font-mono text-sm">
-                Coming Soon!
+                Coming Soon! :)
               </div>
               <CollapsibleContent className="space-y-2">
                 <div className="card3 rounded-md border border-black dark:border-[#1f1f1f] px-4 py-3 font-mono text-sm">
@@ -1112,14 +1112,17 @@ const RadioPage = () => {
               whileHover={{ height: podiumHeight, width: '20%' }}
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-                <span
+                <motion.span
                   className="text-lg font-bold transform -rotate-90 whitespace-nowrap text-black dark:text-white"
-                  style={{ transition: 'opacity 0.5s', opacity: 1 }}
+                  style={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1 }} // add a delay to make sure the bar is fully loaded before showing the text
                 >
                   {nfts[3] ? nfts[3].name : 'No NFTs'} | {nfts[3]?.heatCount} 🔥
-                </span>
+                </motion.span>
               </div>
             </motion.div>
+
             <motion.div
               className="relative w-16 h-full mr-2 bg-orange-500 rounded-lg"
               initial={{ height: 0 }}
@@ -1128,11 +1131,17 @@ const RadioPage = () => {
               whileHover={{ height: podiumHeight, width: '20%' }}
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
-                <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
+                <motion.span
+                  className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap"
+                  style={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                >
                   {nfts[1] ? nfts[1].name : 'No NFTs'} | {nfts[1]?.heatCount} 🔥
-                </span>
+                </motion.span>
               </div>
             </motion.div>
+
             <motion.div
               className="relative w-16 h-full mr-2 bg-orange-500 rounded-lg"
               initial={{ height: 0 }}
@@ -1141,11 +1150,17 @@ const RadioPage = () => {
               whileHover={{ height: podiumHeight, width: '20%' }}
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
-                <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
+                <motion.span
+                  className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap"
+                  style={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                >
                   {nfts[0] ? nfts[0].name : 'No NFTs'} | {nfts[0]?.heatCount} 🔥
-                </span>
+                </motion.span>
               </div>
             </motion.div>
+
             <motion.div
               className="relative w-16 h-full mr-2 bg-orange-500 rounded-lg"
               initial={{ height: 0 }}
@@ -1154,22 +1169,33 @@ const RadioPage = () => {
               whileHover={{ height: podiumHeight, width: '20%' }}
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
-                <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
+                <motion.span
+                  className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap"
+                  style={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                >
                   {nfts[2] ? nfts[2].name : 'No NFTs'} | {nfts[2]?.heatCount} 🔥
-                </span>
+                </motion.span>
               </div>
             </motion.div>
+
             <motion.div
-              className="relative w-16 h-full bg-gray-200 dark:bg-[#1f1f1f] rounded-lg"
+              className="relative w-16 h-full mr-2 bg-gray-200 dark:bg-[#1f1f1f] rounded-lg"
               initial={{ height: 0 }}
               animate={{ height: fifthPlaceHeight }}
               transition={{ duration: 1 }}
               whileHover={{ height: podiumHeight, width: '20%' }}
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
-                <span className="text-lg font-bold transform -rotate-90 whitespace-nowrap text-black dark:text-white">
-                  {nfts[4] ? nfts[4].name : 'No NFTs'} | {nfts[4]?.heatCount} 🔥
-                </span>
+                <motion.span
+                  className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap"
+                  style={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                >
+                  {nfts[0] ? nfts[0].name : 'No NFTs'} | {nfts[0]?.heatCount} 🔥
+                </motion.span>
               </div>
             </motion.div>
           </div>
