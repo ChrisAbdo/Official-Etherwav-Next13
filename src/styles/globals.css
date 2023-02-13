@@ -70,7 +70,11 @@
     opacity: 1;
   }
 }
-
+/* 
 body {
   overflow: hidden;
-}
+} */
+
+/* .nooverflow {
+  overflow: hidden;
+} */

@@ -96,7 +96,15 @@ import {
   HomeIcon,
   SortDesc,
   SortAsc,
+  ChevronsUpDown,
+  Plus,
+  X,
 } from 'lucide-react';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
 import Marquee from 'react-fast-marquee';
@@ -112,6 +120,12 @@ import {
 } from '@/components/ui/navigation-menu';
 
 const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
+const podiumHeight = 400;
+const firstPlaceHeight = 300;
+const secondPlaceHeight = 250;
+const thirdPlaceHeight = 225;
+const fourthPlaceHeight = 200;
+const fifthPlaceHeight = 175;
 
 const RadioPage = () => {
   const { theme, setTheme } = useTheme();
@@ -130,6 +144,7 @@ const RadioPage = () => {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [open, setOpen] = useState(false);
+
   const audioRef = useRef(null);
   const [mounted, setMounted] = useState(false);
   const address = useAddress();
@@ -449,12 +464,11 @@ const RadioPage = () => {
     setIsPlaying(true);
   }
   return (
-    <div className="relative h-screen">
+    <div className="relative h-screen ">
+      {/* LEFT COLUMN */}
       <div className="hidden h-full sm:block absolute left-0 top-0 bottom-0 w-1/4 border-r border-black dark:border-[#1f1f1f]">
-        <h1 className="text-xl font-bold text-white text-left mb-2 mt-2">
-          Queue
-        </h1>
-        <div className="flex justify-between px-3 mb-4">
+        <h1 className="text-xl font-bold text-left mb-2 mt-2 ml-4">Queue</h1>
+        <div className="flex justify-between px-4 mb-4">
           <Select
             onValueChange={(value) =>
               loadSongsByGenre(value).then(() => {
@@ -599,6 +613,35 @@ const RadioPage = () => {
               )}
             </div>
           </ScrollArea>
+
+          <div className="flex justify-between mt-4">
+            <Collapsible
+              open={isOpen}
+              onOpenChange={setIsOpen}
+              className="w-full space-y-2"
+            >
+              <div className="flex items-center justify-between space-x-4">
+                <h4 className="text-lg font-semibold">Playlists</h4>
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" size="lg" className="">
+                    <ChevronsUpDown className="h-4 w-4" />
+                    <span className="sr-only">Toggle</span>
+                  </Button>
+                </CollapsibleTrigger>
+              </div>
+              <div className="card3 rounded-md border border-black dark:border-[#1f1f1f] px-4 py-3 font-mono text-sm">
+                Coming Soon!
+              </div>
+              <CollapsibleContent className="space-y-2">
+                <div className="card3 rounded-md border border-black dark:border-[#1f1f1f] px-4 py-3 font-mono text-sm">
+                  I apologize for the delay
+                </div>
+                <div className="card3 rounded-md border border-black dark:border-[#1f1f1f] px-4 py-3 font-mono text-sm">
+                  I am working on it!
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
         </div>
       </div>
       {/* CENTER COLUMN */}
@@ -1084,7 +1127,7 @@ const RadioPage = () => {
       <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-1/4 border-l border-black dark:border-[#1f1f1f]">
         {/* div that makes the accordion 1/2 the height of the column */}
         <div className="h-1/2">
-          <Accordion type="single" collapsible>
+          {/* <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>
                 <h1 className="text-3xl text-center ml-4">
@@ -1125,7 +1168,78 @@ const RadioPage = () => {
                 </ScrollArea>
               </AccordionContent>
             </AccordionItem>
-          </Accordion>
+          </Accordion> */}
+          <h1 className="text-3xl text-center ml-4">Heat Leaderboard 🔥</h1>
+          <div className="w-full flex justify-center">
+            <motion.div
+              className="relative w-16 h-full mr-2 bg-gray-200 dark:bg-[#1f1f1f] rounded-lg"
+              initial={{ height: 0 }}
+              animate={{ height: fourthPlaceHeight }}
+              transition={{ duration: 1 }}
+              whileHover={{ height: podiumHeight, width: '20%' }}
+            >
+              <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+                <span
+                  className="text-lg font-bold transform -rotate-90 whitespace-nowrap text-black dark:text-white"
+                  style={{ transition: 'opacity 0.5s', opacity: 1 }}
+                >
+                  {nfts[3] ? nfts[3].name : 'No NFTs'}
+                </span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="relative w-16 h-full mr-2 bg-orange-500 rounded-lg"
+              initial={{ height: 0 }}
+              animate={{ height: secondPlaceHeight }}
+              transition={{ duration: 1 }}
+              whileHover={{ height: podiumHeight, width: '20%' }}
+            >
+              <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
+                <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
+                  {nfts[1] ? nfts[1].name : 'No NFTs'}
+                </span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="relative w-16 h-full mr-2 bg-orange-500 rounded-lg"
+              initial={{ height: 0 }}
+              animate={{ height: firstPlaceHeight }}
+              transition={{ duration: 1 }}
+              whileHover={{ height: podiumHeight, width: '20%' }}
+            >
+              <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
+                <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
+                  {nfts[0] ? nfts[0].name : 'No NFTs'}
+                </span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="relative w-16 h-full mr-2 bg-orange-500 rounded-lg"
+              initial={{ height: 0 }}
+              animate={{ height: thirdPlaceHeight }}
+              transition={{ duration: 1 }}
+              whileHover={{ height: podiumHeight, width: '20%' }}
+            >
+              <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
+                <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
+                  {nfts[2] ? nfts[2].name : 'No NFTs'}
+                </span>
+              </div>
+            </motion.div>
+            <motion.div
+              className="relative w-16 h-full bg-gray-200 dark:bg-[#1f1f1f] rounded-lg"
+              initial={{ height: 0 }}
+              animate={{ height: fifthPlaceHeight }}
+              transition={{ duration: 1 }}
+              whileHover={{ height: podiumHeight, width: '20%' }}
+            >
+              <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
+                <span className="text-lg font-bold transform -rotate-90 whitespace-nowrap text-black dark:text-white">
+                  {nfts[4] ? nfts[4].name : 'No NFTs'}
+                </span>
+              </div>
+            </motion.div>
+          </div>
         </div>
         <div className="h-1/2 border-t border-black dark:border-[#1f1f1f]">
           <h1 className="text-3xl text-center ml-4 mt-4">
