@@ -99,6 +99,7 @@ import {
   ChevronsUpDown,
   Plus,
   X,
+  ListMusic,
 } from 'lucide-react';
 import {
   Collapsible,
@@ -467,7 +468,9 @@ const RadioPage = () => {
     <div className="relative h-screen ">
       {/* LEFT COLUMN */}
       <div className="hidden h-full sm:block absolute left-0 top-0 bottom-0 w-1/4 border-r border-black dark:border-[#1f1f1f]">
-        <h1 className="text-xl font-bold text-left mb-2 mt-2 ml-4">Queue</h1>
+        <h1 className="text-xl font-bold text-center mb-6 mt-2 ml-4">
+          Radio Settings
+        </h1>
         <div className="flex justify-between px-4 mb-4">
           <Select
             onValueChange={(value) =>
@@ -522,106 +525,77 @@ const RadioPage = () => {
           </DropdownMenu>
         </div>
         <div className="px-4">
-          {/* {nfts.length ? (
-            nfts.map((nft, index) => (
-              //   <>
-                //   <li
-                //     key={index}
-                //     className={`flex p-2 rounded-md card3 ${
-                //       index === currentIndex
-                //         ? 'bg-[#DADDE2] dark:bg-[#555555]'
-                //         : ''
-                //     }`}
-                //     onClick={() => {
-                //       setCurrentIndex(index);
-                //       setIsPlaying(true);
-                //     }}
-                //   >
-                //     <Image
-                //       src={nft.coverImage}
-                //       height={50}
-                //       width={50}
-                //       alt="nft"
-                //       className="w-12 h-12 border border-gray-200 dark:border-[#303030] rounded"
-                //       priority
-                //     />
-                //     <div className="flex flex-col text-left ml-2">
-                //       <h1 className="text-sm font-semibold">
-                //         {nft.heatCount} | {nft.name}
-                //       </h1>
+          <Accordion
+            type="single"
+            collapsible
+            className="full"
+            defaultValue="item-1"
+          >
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="text-xl">
+                <ListMusic /> View Queue
+              </AccordionTrigger>
+              <AccordionContent className="text-xl">
+                <ScrollArea className="h-96 w-full rounded-md border border-black dark:border-[#1f1f1f]">
+                  <div className="p-4">
+                    <div className="flex justify-between">
+                      <h4 className="mb-4 text-sm font-medium leading-none">
+                        Songs
+                      </h4>
+                    </div>
+                    {nfts.length ? (
+                      nfts.map((nft, index) => (
+                        <Fragment key={index}>
+                          <li
+                            className={`flex p-2 rounded-md card3 ${
+                              index === currentIndex
+                                ? 'bg-[#DADDE2] dark:bg-[#555555]'
+                                : ''
+                            }`}
+                            onClick={() => {
+                              setCurrentIndex(index);
+                              setIsPlaying(true);
+                            }}
+                          >
+                            <Image
+                              src={nft.coverImage}
+                              height={50}
+                              width={50}
+                              alt="nft"
+                              className="w-12 h-12 border border-gray-200 dark:border-[#303030] rounded"
+                              priority
+                            />
+                            <div className="flex flex-col text-left ml-2">
+                              <h1 className="text-sm font-semibold">
+                                {nft.heatCount} | {nft.name}
+                              </h1>
 
-                //       <h1 className="text-xs text-gray-400">
-                //         {nft.seller.substring(0, 5)}...{' '}
-                //         {nft.seller.substring(38, 42)}
-                //       </h1>
-                //     </div>
-                //   </li>
-              //     <Separator className="my-2" />
-              //   </>
-            
-            ))
-          ) : (
-            <h1>It looks like there are no songs!</h1>
-          )} */}
+                              <h1 className="text-xs text-gray-400">
+                                {nft.seller.substring(0, 5)}...{' '}
+                                {nft.seller.substring(38, 42)}
+                              </h1>
+                            </div>
+                          </li>
+                          <Separator className="my-2" />
+                        </Fragment>
+                      ))
+                    ) : (
+                      <h1>It looks like there are no songs!</h1>
+                    )}
+                  </div>
+                </ScrollArea>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
 
-          <ScrollArea className="h-96 w-full rounded-md border border-black dark:border-[#1f1f1f]">
-            <div className="p-4">
-              <div className="flex justify-between">
-                <h4 className="mb-4 text-sm font-medium leading-none">Songs</h4>
-                <h4 className="mb-4 text-sm font-medium leading-none">
-                  &darr;
-                </h4>
-              </div>
-              {nfts.length ? (
-                nfts.map((nft, index) => (
-                  <Fragment key={index}>
-                    <li
-                      className={`flex p-2 rounded-md card3 ${
-                        index === currentIndex
-                          ? 'bg-[#DADDE2] dark:bg-[#555555]'
-                          : ''
-                      }`}
-                      onClick={() => {
-                        setCurrentIndex(index);
-                        setIsPlaying(true);
-                      }}
-                    >
-                      <Image
-                        src={nft.coverImage}
-                        height={50}
-                        width={50}
-                        alt="nft"
-                        className="w-12 h-12 border border-gray-200 dark:border-[#303030] rounded"
-                        priority
-                      />
-                      <div className="flex flex-col text-left ml-2">
-                        <h1 className="text-sm font-semibold">
-                          {nft.heatCount} | {nft.name}
-                        </h1>
-
-                        <h1 className="text-xs text-gray-400">
-                          {nft.seller.substring(0, 5)}...{' '}
-                          {nft.seller.substring(38, 42)}
-                        </h1>
-                      </div>
-                    </li>
-                    <Separator className="my-2" />
-                  </Fragment>
-                ))
-              ) : (
-                <h1>It looks like there are no songs!</h1>
-              )}
-            </div>
-          </ScrollArea>
-
-          <div className="flex justify-between mt-4">
+          <div className="flex justify-between mt-12">
             <Collapsible
               open={isOpen}
               onOpenChange={setIsOpen}
               className="w-full space-y-2"
             >
               <div className="flex items-center justify-between space-x-4">
-                <h4 className="text-lg font-semibold">Playlists</h4>
+                <h4 className="text-xl">Playlists</h4>
                 <CollapsibleTrigger asChild>
                   <Button variant="outline" size="lg" className="">
                     <ChevronsUpDown className="h-4 w-4" />
@@ -646,7 +620,7 @@ const RadioPage = () => {
       </div>
       {/* CENTER COLUMN */}
       <div className="relative w-full sm:w-1/2 mx-auto h-full overflow-y-hidden">
-        <div class="w-full rounded overflow-hidden">
+        <div className="w-full rounded overflow-hidden">
           {songsLoaded ? (
             <div key={currentIndex}>
               <div className="flex justify-center items-center mt-12">
@@ -669,8 +643,8 @@ const RadioPage = () => {
                   </motion.div>
                 </figure>
               </div>
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2 text-center">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2 text-center">
                   {nfts[currentIndex].name}
                 </div>
                 <div className="text-center">
@@ -1125,51 +1099,10 @@ const RadioPage = () => {
       </div>
       {/* RIGHT COLUMN */}
       <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-1/4 border-l border-black dark:border-[#1f1f1f]">
-        {/* div that makes the accordion 1/2 the height of the column */}
         <div className="h-1/2">
-          {/* <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger>
-                <h1 className="text-3xl text-center ml-4">
-                  Heat Leaderboard 🔥
-                </h1>
-              </AccordionTrigger>
-              <AccordionContent>
-                <ScrollArea className="h-[200px] rounded-md p-2  ">
-                  {topThreeNfts.map((nft, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between items-center px-6 card3">
-                        <div className="flex items-center p-2">
-                          <h1 className="text-2xl">
-                            {index === 0 ? (
-                              <h1 className="text-4xl">🥇&nbsp;</h1>
-                            ) : index === 1 ? (
-                              <h1 className="text-4xl">🥈&nbsp;</h1>
-                            ) : index === 2 ? (
-                              <h1 className="text-4xl">🥉&nbsp;</h1>
-                            ) : (
-                              <h1 className="text-4xl">🏅&nbsp;</h1>
-                            )}
-                          </h1>
-                          <Image
-                            src={nft.coverImage}
-                            width={50}
-                            height={50}
-                            alt="cover"
-                            className="rounded-none"
-                          />
-                          <p className="ml-2 text-2xl truncate">{nft.name}</p>
-                        </div>
-                        <p className="text-2xl">{nft.heatCount}</p>
-                      </div>
-                      <Separator className="" />
-                    </div>
-                  ))}
-                </ScrollArea>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion> */}
-          <h1 className="text-3xl text-center ml-4">Heat Leaderboard 🔥</h1>
+          <h1 className="text-3xl text-center ml-4 mb-1">
+            Heat Leaderboard 🔥
+          </h1>
           <div className="w-full flex justify-center">
             <motion.div
               className="relative w-16 h-full mr-2 bg-gray-200 dark:bg-[#1f1f1f] rounded-lg"
@@ -1183,7 +1116,7 @@ const RadioPage = () => {
                   className="text-lg font-bold transform -rotate-90 whitespace-nowrap text-black dark:text-white"
                   style={{ transition: 'opacity 0.5s', opacity: 1 }}
                 >
-                  {nfts[3] ? nfts[3].name : 'No NFTs'}
+                  {nfts[3] ? nfts[3].name : 'No NFTs'} | {nfts[3]?.heatCount} 🔥
                 </span>
               </div>
             </motion.div>
@@ -1196,7 +1129,7 @@ const RadioPage = () => {
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
                 <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
-                  {nfts[1] ? nfts[1].name : 'No NFTs'}
+                  {nfts[1] ? nfts[1].name : 'No NFTs'} | {nfts[1]?.heatCount} 🔥
                 </span>
               </div>
             </motion.div>
@@ -1209,7 +1142,7 @@ const RadioPage = () => {
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
                 <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
-                  {nfts[0] ? nfts[0].name : 'No NFTs'}
+                  {nfts[0] ? nfts[0].name : 'No NFTs'} | {nfts[0]?.heatCount} 🔥
                 </span>
               </div>
             </motion.div>
@@ -1222,7 +1155,7 @@ const RadioPage = () => {
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
                 <span className="text-lg font-bold transform -rotate-90 text-black dark:text-white whitespace-nowrap">
-                  {nfts[2] ? nfts[2].name : 'No NFTs'}
+                  {nfts[2] ? nfts[2].name : 'No NFTs'} | {nfts[2]?.heatCount} 🔥
                 </span>
               </div>
             </motion.div>
@@ -1235,7 +1168,7 @@ const RadioPage = () => {
             >
               <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-white">
                 <span className="text-lg font-bold transform -rotate-90 whitespace-nowrap text-black dark:text-white">
-                  {nfts[4] ? nfts[4].name : 'No NFTs'}
+                  {nfts[4] ? nfts[4].name : 'No NFTs'} | {nfts[4]?.heatCount} 🔥
                 </span>
               </div>
             </motion.div>
