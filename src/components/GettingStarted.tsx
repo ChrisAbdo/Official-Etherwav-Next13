@@ -1,6 +1,6 @@
 const GettingStarted = () => {
   return (
-    <div className="bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-[#1f1f1f] py-24 sm:py-32">
+    <div className="bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-[#1f1f1f]">
       <div className="h-[5rem]"></div>
 
       <div className="mx-auto flex max-w-5xl flex-col items-start gap-10 px-6 md:flex-row lg:px-8">
