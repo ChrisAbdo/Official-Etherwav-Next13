@@ -51,12 +51,13 @@ const Upload = () => {
   const [currentInputIndex, setCurrentInputIndex] = useState(0);
   const [direction, setDirection] = useState('right');
   const [isUploading, setIsUploading] = useState(false);
+  const [inputType, setInputType] = useState('');
   const { toast } = useToast();
 
   const inputs = [
     <form key={0} className="form-control w-full max-w-xs ml-6">
       <label className="label">
-        <span className="label-text">Pick a beat | MP3 / WAV</span>
+        <span className="label-text">Upload a song or podcast | MP3, WAV</span>
       </label>
       <label>
         <input
@@ -139,6 +140,10 @@ const Upload = () => {
       setDisabled(true);
     }
   }, [formInput, fileUrl]);
+
+  const onInputTypeChange = (e: any) => {
+    setInputType(e.target.value);
+  };
 
   async function onChange(e: any) {
     // upload image to IPFS
@@ -295,7 +300,9 @@ const Upload = () => {
         {/* CARD */}
         <div className="w-96 border border-[#303030] rounded-md uploadcard bg-white dark:bg-black">
           <figure className="px-10 pt-5">
-            <h1 className="text-3xl font-bold text-center">Upload a Song</h1>
+            <h1 className="text-3xl font-bold text-center">
+              Upload to Etherwav
+            </h1>
           </figure>
           <p className="mt-2 text-sm text-center">
             PLEASE NOTE: THE BUTTON WILL BE DISABLED UNTIL ALL ASSETS ARE
