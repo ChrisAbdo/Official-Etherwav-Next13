@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
 import { Poppins } from '@next/font/google';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from '@/components/ui/toaster';
 import { ChainId } from '@thirdweb-dev/react';
 import { useRouter } from 'next/router';
 import { ThirdwebProvider } from '@thirdweb-dev/react';
@@ -150,7 +150,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <ThemeProvider>
           {/* @ts-ignore */}
-
           <CommandDialog open={open} onOpenChange={setOpen}>
             <div className="mt-3 w-[95%]">
               <CommandInput placeholder="Type a command or search..." />
@@ -272,6 +271,7 @@ export default function App({ Component, pageProps }: AppProps) {
               </CommandGroup>
             </CommandList>
           </CommandDialog>
+
           <Navbar open={open} setOpen={setOpen} />
           <Component {...pageProps} />
           <Toaster />

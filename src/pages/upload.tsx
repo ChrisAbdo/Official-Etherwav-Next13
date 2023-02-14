@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useToast } from '@/hooks/ui/use-toast';
 
 import Web3 from 'web3';
 import Radio from 'backend/build/contracts/Radio.json';
@@ -50,6 +51,7 @@ const Upload = () => {
   const [currentInputIndex, setCurrentInputIndex] = useState(0);
   const [direction, setDirection] = useState('right');
   const [isUploading, setIsUploading] = useState(false);
+  const { toast } = useToast();
 
   const inputs = [
     <form key={0} className="form-control w-full max-w-xs ml-6">
@@ -151,11 +153,10 @@ const Upload = () => {
       setLoading(false);
       // @ts-ignore
       setFileUrl(url);
-      toast.success('received audio file', {
-        style: {
-          border: '1px solid #fff',
-          fontWeight: 'bold',
-        },
+      toast({
+        title: 'Received Audio File',
+        description:
+          'Your audio file has been received. Continue to the next steps!',
       });
     } catch (error) {
       console.log('Error uploading file: ', error);
@@ -179,19 +180,15 @@ const Upload = () => {
         coverImage: url,
       }); // update form input with cover image URL
       setImageLoading(false);
-      toast.success('received cover image', {
-        style: {
-          border: '1px solid #fff',
-          fontWeight: 'bold',
-        },
+      toast({
+        title: 'Received Cover Image',
+        description: 'Your cover image has been received!',
       });
     } catch (error) {
       console.log('Error uploading file: ', error);
-      toast.error('Error uploading file: ', {
-        style: {
-          border: '1px solid #fff',
-          fontWeight: 'bold',
-        },
+      toast({
+        title: 'Error uploading file',
+        description: 'Please try again',
       });
     }
   }
@@ -221,15 +218,10 @@ const Upload = () => {
   }
 
   async function listNFTForSale() {
-    const notification = toast.loading(
-      'Make sure to confirm both transactions!',
-      {
-        style: {
-          border: '1px solid #fff',
-          fontWeight: 'bold',
-        },
-      }
-    );
+    const notification = toast({
+      title: 'Minting song...',
+      description: 'Please confirm both transactions!',
+    });
 
     try {
       // @ts-ignore
@@ -267,12 +259,9 @@ const Upload = () => {
             .on('receipt', function () {
               console.log('listed');
 
-              toast.success('Listed to Etherwav!', {
-                id: notification,
-                style: {
-                  border: '1px solid #fff',
-                  fontWeight: 'bold',
-                },
+              toast({
+                title: 'Minted!',
+                description: 'Your audio has been uploaded to Etherwav!',
               });
 
               setIsUploading(false);
@@ -285,12 +274,9 @@ const Upload = () => {
         });
     } catch (error) {
       console.log(error);
-      toast.error('Error creating stem', {
-        id: notification,
-        style: {
-          border: '1px solid #fff',
-          fontWeight: 'bold',
-        },
+      toast({
+        title: 'Error minting song',
+        description: 'Please try again',
       });
     }
   }

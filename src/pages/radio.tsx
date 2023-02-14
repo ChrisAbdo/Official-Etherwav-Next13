@@ -2,14 +2,6 @@
 import React from 'react';
 import { useEffect, useState, useLayoutEffect, useRef, Fragment } from 'react';
 import { motion } from 'framer-motion';
-import { useTheme } from 'next-themes';
-import {
-  useNetworkMismatch,
-  useAddress,
-  ConnectWallet,
-  useNetwork,
-} from '@thirdweb-dev/react';
-import { ChainId } from '@thirdweb-dev/sdk';
 
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -60,16 +52,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   HoverCard,
@@ -85,20 +68,7 @@ import {
   SkipForward,
   SkipBack,
   Radio as RadioIcon,
-  Wifi,
-  Github,
-  Twitter,
-  Upload,
-  Moon,
-  User,
-  Search,
-  Sun,
-  HomeIcon,
-  SortDesc,
-  SortAsc,
   ChevronsUpDown,
-  Plus,
-  X,
   ListMusic,
 } from 'lucide-react';
 import {
@@ -108,17 +78,7 @@ import {
 } from '@/components/ui/collapsible';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
-import Marquee from 'react-fast-marquee';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
 
 const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
 const podiumHeight = 400;
@@ -129,7 +89,6 @@ const fourthPlaceHeight = 200;
 const fifthPlaceHeight = 175;
 
 const RadioPage = () => {
-  const { theme, setTheme } = useTheme();
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -144,13 +103,9 @@ const RadioPage = () => {
   const [position, setPosition] = useState('bottom');
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [open, setOpen] = useState(false);
 
   const audioRef = useRef(null);
   const [mounted, setMounted] = useState(false);
-  const address = useAddress();
-  const isOnWrongNetwork = useNetworkMismatch();
-  const [, switchNetwork] = useNetwork();
 
   useEffect(() => {
     setMounted(true);
@@ -464,8 +419,9 @@ const RadioPage = () => {
     setCurrentIndex(currentIndex === 0 ? nfts.length - 1 : currentIndex - 1);
     setIsPlaying(true);
   }
+
   return (
-    <div className="relative h-screen ">
+    <div className="relative h-screen body">
       {/* LEFT COLUMN */}
       <div className="hidden h-full sm:block absolute left-0 top-0 bottom-0 w-1/4 border-r border-black dark:border-[#1f1f1f]">
         <h1 className="text-xl font-bold text-center mb-6 mt-2 ml-4">
@@ -580,7 +536,56 @@ const RadioPage = () => {
                         </Fragment>
                       ))
                     ) : (
-                      <h1>It looks like there are no songs!</h1>
+                      <div className="flex justify-center items-center space-x-2">
+                        <div
+                          className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                          role="status"
+                        >
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div
+                          className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                          role="status"
+                        >
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div
+                          className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                          role="status"
+                        >
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div
+                          className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                          role="status"
+                        >
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div
+                          className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                          role="status"
+                        >
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div
+                          className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                          role="status"
+                        >
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div
+                          className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                          role="status"
+                        >
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </ScrollArea>
@@ -975,7 +980,70 @@ const RadioPage = () => {
                                   </>
                                 ))
                               ) : (
-                                <h1>It looks like there are no songs!</h1>
+                                <div className="flex justify-center items-center space-x-2">
+                                  <div
+                                    className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                  <div
+                                    className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                                    role="status"
+                                  >
+                                    <span className="visually-hidden">
+                                      Loading...
+                                    </span>
+                                  </div>
+                                </div>
                               )}
                             </div>
                           </ScrollArea>
@@ -1093,7 +1161,56 @@ const RadioPage = () => {
               </div>
             </div>
           ) : (
-            <h1>It looks like there are no songs!</h1>
+            <div className="flex justify-center items-center space-x-2">
+              <div
+                className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <div
+                className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <div
+                className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <div
+                className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <div
+                className="
+spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0
+text-orange-500"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <div
+                className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <div
+                className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0 text-orange-500"
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
           )}
         </div>
       </div>

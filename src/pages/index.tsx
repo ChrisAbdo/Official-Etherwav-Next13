@@ -93,7 +93,7 @@ export default function Home() {
     return () => document.removeEventListener('keydown', down);
   }, []);
   return (
-    <div className="no-overflow">
+    <div>
       <Head>
         <title>Etherwav</title>
         <meta name="description" content="Etherwav built by Chris Abdo" />
