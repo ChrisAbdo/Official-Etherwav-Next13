@@ -187,8 +187,8 @@ export default function App({ Component, pageProps }: AppProps) {
                         <Image
                           //  @ts-ignore
                           src={nft.coverImage}
-                          width={40}
-                          height={40}
+                          width={30}
+                          height={30}
                           alt="nft"
                           className="min-w-[25px] min-h-[25px] max-w-[25px] max-h-[25px]"
                         />
