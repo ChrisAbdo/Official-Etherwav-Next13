@@ -43,6 +43,7 @@ import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import Image from 'next/image';
 
 const poppins = Poppins({
   weight: '400',
@@ -183,8 +184,15 @@ export default function App({ Component, pageProps }: AppProps) {
                   nfts.map((nft, index) => (
                     <Link key={index} href="/radio">
                       <CommandItem>
-                        <Music className="mr-2 h-4 w-4" />
-                        <span className="text-black dark:text-white">
+                        <Image
+                          //  @ts-ignore
+                          src={nft.coverImage}
+                          width={40}
+                          height={40}
+                          alt="nft"
+                          className="min-w-[25px] min-h-[25px] max-w-[25px] max-h-[25px]"
+                        />
+                        <span className="text-black dark:text-white ml-2">
                           {/* @ts-ignore */}
                           {nft.name}
                         </span>

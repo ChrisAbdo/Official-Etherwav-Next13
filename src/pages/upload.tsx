@@ -6,7 +6,6 @@ import Web3 from 'web3';
 import Radio from 'backend/build/contracts/Radio.json';
 import NFT from 'backend/build/contracts/NFT.json';
 
-import toast from 'react-hot-toast';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {

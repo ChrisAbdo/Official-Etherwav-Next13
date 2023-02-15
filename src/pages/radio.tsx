@@ -4,7 +4,7 @@ import { useEffect, useState, useLayoutEffect, useRef, Fragment } from 'react';
 import { motion } from 'framer-motion';
 
 import axios from 'axios';
-import toast from 'react-hot-toast';
+import { useToast } from '@/hooks/ui/use-toast';
 import Image from 'next/image';
 
 import Web3 from 'web3';
@@ -89,6 +89,8 @@ const fourthPlaceHeight = 200;
 const fifthPlaceHeight = 175;
 
 const RadioPage = () => {
+  const { toast } = useToast();
+
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -333,17 +335,10 @@ const RadioPage = () => {
   }
 
   async function handleGiveHeat() {
-    const notification = toast.loading(
-      'Confirm the transaction to give heat! 🔥🔥🔥',
-      {
-        style: {
-          border: '1px solid #fff',
-          backgroundColor: '#2a2a2a',
-          fontWeight: 'bold',
-          color: '#fff',
-        },
-      }
-    );
+    const notification = toast({
+      title: 'Giving Heat!',
+      description: 'Confirm the transaction in your wallet!',
+    });
     // Get an instance of the Radio contract
     try {
       const web3 = new Web3(window.ethereum);
@@ -372,27 +367,17 @@ const RadioPage = () => {
             .classList.add('animate-pulse');
           document.getElementById('heatanimation').classList.remove('hidden');
 
-          toast.success('Heat given successfully! 🔥🔥🔥', {
-            style: {
-              border: '1px solid #fff',
-              backgroundColor: '#2a2a2a',
-              fontWeight: 'bold',
-              color: '#fff',
-            },
-            id: notification,
+          toast({
+            title: 'Heat given! 🔥🔥🔥',
+            description: 'You gave heat to the song! 🔥🔥🔥',
           });
           setLoading(false);
         });
     } catch (err) {
       console.log(err);
-      toast.error('Heat could not be given! ❌❌❌', {
-        style: {
-          border: '1px solid #fff',
-          backgroundColor: '#2a2a2a',
-          fontWeight: 'bold',
-          color: '#fff',
-        },
-        id: notification,
+      toast({
+        title: 'Error giving heat!',
+        description: 'Please try again!',
       });
     }
   }
@@ -401,10 +386,14 @@ const RadioPage = () => {
     setAscending(!ascending);
     if (ascending) {
       await loadSongs();
-      toast.success('Songs sorted descending! 🔽🔥');
+      toast({
+        title: 'Songs sorted descending! 🔽🔥',
+      });
     } else {
       await loadSongsAscending();
-      toast.success('Songs sorted ascending! 🔼🔥');
+      toast({
+        title: 'Songs sorted ascending! 🔼🔥',
+      });
     }
   }
 
@@ -431,7 +420,9 @@ const RadioPage = () => {
           <Select
             onValueChange={(value) =>
               loadSongsByGenre(value).then(() => {
-                toast.success(`Loaded ${value} songs!`);
+                toast({
+                  title: `Songs filtered by ${value}!`,
+                });
               })
             }
           >
@@ -773,7 +764,9 @@ text-orange-500"
                       await loadSongsByGenre(nfts[currentIndex].genre);
                       // reset the index
                       setCurrentIndex(0);
-                      toast.success(`Sorted by ${nfts[currentIndex].genre}`);
+                      toast({
+                        title: `Now playing ${nfts[currentIndex].genre}!`,
+                      });
                     }}
                     size="lg"
                     variant="outline"
@@ -890,7 +883,9 @@ text-orange-500"
                           <Select
                             onValueChange={(value) =>
                               loadSongsByGenre(value).then(() => {
-                                toast.success(`Loaded ${value} songs!`);
+                                toast({
+                                  title: `Now playing ${value}!`,
+                                });
                               })
                             }
                           >
