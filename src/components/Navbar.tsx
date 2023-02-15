@@ -397,7 +397,7 @@ const ListItem = React.forwardRef<
           ref={ref}
           href="/radio"
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-[#303030] dark:focus:bg-slate-700',
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-[#303030] dark:focus:bg-[#0a0a0a]',
             className
           )}
           {...props}
