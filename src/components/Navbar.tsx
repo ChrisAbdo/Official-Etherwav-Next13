@@ -220,7 +220,8 @@ const Navbar = ({ open, setOpen }: any) => {
                           className="w-full"
                         >
                           <Wifi />
-                          &nbsp; Wrong Network. Switch to Mumbai.&nbsp; <Wifi />
+                          &nbsp; Wrong Network. Switch to Polygon Mainnet.&nbsp;{' '}
+                          <Wifi />
                         </Button>
                       </div>
                     )}
