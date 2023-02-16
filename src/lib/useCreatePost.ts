@@ -3,11 +3,11 @@ import { useSDK, useStorageUpload } from "@thirdweb-dev/react";
 import {
   PublicationMainFocus,
   useCreatePostTypedDataMutation,
-} from "@/app/src/graphql/generated";
+} from "@/graphql/generated";
 import useLensUser from "./auth/useLensUser";
 import { signTypedDataWithOmmittedTypename, splitSignature } from "./helpers";
 import { v4 as uuidv4 } from "uuid";
-import { LENS_CONTRACT_ABI, LENS_CONTRACT_ADDRESS } from "@/app/src/const/contracts";
+import { LENS_CONTRACT_ABI, LENS_CONTRACT_ADDRESS } from "@/const/contracts";
 import useLogin from "./auth/useLogin";
 
 type CreatePostArgs = {

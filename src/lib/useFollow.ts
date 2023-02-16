@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useAddress, useSDK } from "@thirdweb-dev/react";
-import { LENS_CONTRACT_ABI, LENS_CONTRACT_ADDRESS } from "@/app/src/const/contracts";
-import { useCreateFollowTypedDataMutation } from "@/app/src/graphql/generated";
+import { LENS_CONTRACT_ABI, LENS_CONTRACT_ADDRESS } from "@/const/contracts";
+import { useCreateFollowTypedDataMutation } from "@/graphql/generated";
 import useLogin from "./auth/useLogin";
 import { signTypedDataWithOmmittedTypename, splitSignature } from "./helpers";
 
