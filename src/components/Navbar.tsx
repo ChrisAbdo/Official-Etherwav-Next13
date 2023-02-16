@@ -73,8 +73,9 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { ChainId } from '@thirdweb-dev/sdk';
+import SignInButton from './SignInButton';
 
-const CHAIN_ID = ChainId.Mumbai;
+const CHAIN_ID = ChainId.Polygon;
 
 const Navbar = ({ open, setOpen }: any) => {
   const address = useAddress();
@@ -223,6 +224,8 @@ const Navbar = ({ open, setOpen }: any) => {
                         </Button>
                       </div>
                     )}
+
+                    {address ? <SignInButton /> : null}
                   </DialogContent>
                 </Dialog>
 
